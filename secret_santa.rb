@@ -1,0 +1,29 @@
+require "csv"
+require "pp"
+
+class SecretSanta
+  def initialize(file_name)
+    @file_name = file_name    
+  end
+
+  def read
+    @players = {}
+
+    CSV.foreach(@file_name, headers: true) do |row|
+      first_name = row["First Name"]
+      last_name = row["Last Name"]
+      email = row["Email"]
+
+      if ! @players.key?(last_name)
+        @players[last_name] = []
+      end
+
+      @players[last_name] << first_name
+    end
+
+    puts @players
+  end
+end
+
+secret_santa = SecretSanta.new("players.csv")
+secret_santa.read

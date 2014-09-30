@@ -6,6 +6,11 @@ class SecretSanta
     @file_name = file_name    
   end
 
+  def run
+    read
+    pair
+  end
+
   def read
     @players = {}
 
@@ -21,9 +26,14 @@ class SecretSanta
       @players[last_name] << first_name
     end
 
-    puts @players
+    @players
+  end
+
+  def pair
+    puts @players.values.sample
   end
 end
 
 secret_santa = SecretSanta.new("players.csv")
-secret_santa.read
+secret_santa.run
+http://open.spotify.com/track/2eJyQI0nr69AtxHsXf5wZj
